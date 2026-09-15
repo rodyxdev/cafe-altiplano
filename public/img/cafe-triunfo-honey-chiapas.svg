@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="El Triunfo Honey — Chiapas">
+  <title>El Triunfo Honey — Chiapas</title>
+  <rect width="400" height="300" fill="#f2e4cd"/>
+  <circle cx="330" cy="58" r="72" fill="#e0a84b" opacity=".28"/>
+  <circle cx="58" cy="252" r="52" fill="#6b4519" opacity=".10"/>
+  <g transform="translate(130 58)">
+    <path d="M14 26 H126 L138 214 A10 10 0 0 1 128 226 H12 A10 10 0 0 1 2 214 Z" fill="#6b4519"/>
+    <path d="M14 26 H70 L66 226 H12 A10 10 0 0 1 2 214 Z" fill="#ffffff" opacity=".07"/>
+    <rect x="8" y="6" width="124" height="24" rx="5" fill="#6b4519"/>
+    <rect x="8" y="6" width="124" height="24" rx="5" fill="#000" opacity=".22"/>
+    <rect x="22" y="70" width="96" height="76" rx="6" fill="#e0a84b"/>
+    <text x="70" y="96" font-family="Georgia, serif" font-size="13" fill="#2a1a12"
+      text-anchor="middle" letter-spacing="1.5">ALTIPLANO</text>
+    <line x1="36" y1="106" x2="104" y2="106" stroke="#2a1a12" stroke-width="1" opacity=".45"/>
+    <text x="70" y="126" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#2a1a12"
+      text-anchor="middle" letter-spacing="2" font-weight="bold">CHIAPAS</text>
+    <ellipse cx="70" cy="138" rx="9" ry="6" fill="#2a1a12" opacity=".8"/>
+    <path d="M70 132 c-3 4 -3 8 0 12" stroke="#e0a84b" stroke-width="1.4" fill="none"/>
+    <rect x="30" y="176" width="80" height="6" rx="3" fill="#fff" opacity=".22"/>
+    <rect x="42" y="190" width="56" height="5" rx="2.5" fill="#fff" opacity=".14"/>
+  </g>
+</svg>

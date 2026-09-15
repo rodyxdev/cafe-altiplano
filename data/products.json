@@ -1,0 +1,112 @@
+[
+  {
+    "id": "cafe-jaltenango-chiapas",
+    "name": "Jaltenango — Chiapas",
+    "description": "Origen único de la Sierra Madre de Chiapas, cultivado a 1,450 msnm y lavado en beneficio propio. Tueste medio que abre en panela y naranja dulce, con cuerpo sedoso y un final largo a cacao con leche. Nuestro café de casa: perdona cualquier método y luce especialmente bien en prensa francesa.",
+    "price": 245.00,
+    "origin": "Chiapas",
+    "category": "cafe",
+    "stock": 40,
+    "image": "/img/cafe-jaltenango-chiapas.svg"
+  },
+  {
+    "id": "cafe-pluma-hidalgo-oaxaca",
+    "name": "Pluma Hidalgo — Oaxaca",
+    "description": "El clásico oaxaqueño de la sierra sur, variedad Typica de árboles viejos a 1,300 msnm. Lavado, de acidez suave y redonda, con notas de almendra tostada, miel de agave y un fondo floral discreto. Ideal para quien busca un café tradicional bien hecho, sin estridencias.",
+    "price": 265.00,
+    "origin": "Oaxaca",
+    "category": "cafe",
+    "stock": 28,
+    "image": "/img/cafe-pluma-hidalgo-oaxaca.svg"
+  },
+  {
+    "id": "cafe-coatepec-veracruz",
+    "name": "Coatepec — Veracruz",
+    "description": "De la zona cafetalera más antigua del país, sembrado bajo sombra de chalahuite a 1,200 msnm. Tueste medio-claro con acidez cítrica clara, notas de mandarina y caña, y un cuerpo ligero muy limpio. Nuestro favorito para filtrado de goteo por la mañana.",
+    "price": 255.00,
+    "origin": "Veracruz",
+    "category": "cafe",
+    "stock": 35,
+    "image": "/img/cafe-coatepec-veracruz.svg"
+  },
+  {
+    "id": "cafe-triunfo-honey-chiapas",
+    "name": "El Triunfo Honey — Chiapas",
+    "description": "Lote pequeño de la reserva de la biósfera El Triunfo, procesado honey amarillo con 14 días de secado en camas africanas. Dulzor intenso a piloncillo y durazno en almíbar, acidez malica y cuerpo jugoso. Producción limitada de la cosecha 2025.",
+    "price": 385.00,
+    "origin": "Chiapas",
+    "category": "cafe",
+    "stock": 12,
+    "image": "/img/cafe-triunfo-honey-chiapas.svg"
+  },
+  {
+    "id": "cafe-natural-oaxaca",
+    "name": "Natural Sierra Juárez — Oaxaca",
+    "description": "Proceso natural completo, secado con cereza entera durante 21 días. Es el lote más expresivo del catálogo: fresa madura, cacao nib y un toque a vino tinto, con cuerpo denso y postgusto largo. Recomendado para quien ya conoce los cafés de proceso natural.",
+    "price": 410.00,
+    "origin": "Oaxaca",
+    "category": "cafe",
+    "stock": 9,
+    "image": "/img/cafe-natural-oaxaca.svg"
+  },
+  {
+    "id": "cafe-blend-altiplano",
+    "name": "Blend Altiplano — Espresso",
+    "description": "Nuestra mezcla de casa para espresso: 60% Chiapas lavado, 40% Veracruz honey, con tueste medio-oscuro calibrado para leche. Crema densa color avellana, notas de chocolate amargo, nuez y caramelo salado. Estable en cualquier máquina, de palanca a superautomática.",
+    "price": 230.00,
+    "origin": "Chiapas",
+    "category": "cafe",
+    "stock": 50,
+    "image": "/img/cafe-blend-altiplano.svg"
+  },
+  {
+    "id": "cafe-descafeinado-veracruz",
+    "name": "Descafeinado Agua — Veracruz",
+    "description": "Descafeinado por proceso de agua de montaña, sin solventes químicos, sobre una base lavada de Huatusco. Conserva el cuerpo y el dulzor del café original: chocolate con leche, nuez moscada y un cierre limpio. Para la tarde, sin renunciar a nada.",
+    "price": 285.00,
+    "origin": "Veracruz",
+    "category": "cafe",
+    "stock": 22,
+    "image": "/img/cafe-descafeinado-veracruz.svg"
+  },
+  {
+    "id": "acc-v60-ceramica-02",
+    "name": "Cafetera V60 de cerámica 02",
+    "description": "Cono de cerámica tamaño 02 para 1 a 4 tazas, con las estrías en espiral que dan el flujo parejo característico del método. Incluye 40 filtros de papel y nuestra guía de receta impresa. La cerámica retiene el calor mejor que el plástico y se nota en la taza.",
+    "price": 520.00,
+    "origin": "Oaxaca",
+    "category": "accesorios",
+    "stock": 15,
+    "image": "/img/acc-v60-ceramica-02.svg"
+  },
+  {
+    "id": "acc-prensa-francesa-800",
+    "name": "Prensa francesa 800 ml",
+    "description": "Jarra de vidrio borosilicato con marco de acero inoxidable y filtro de malla doble que deja pasar menos sedimento. Rinde cuatro tazas y desarma por completo para lavarse. El método más indulgente para empezar a moler en casa.",
+    "price": 640.00,
+    "origin": "Veracruz",
+    "category": "accesorios",
+    "stock": 18,
+    "image": "/img/acc-prensa-francesa-800.svg"
+  },
+  {
+    "id": "acc-molino-manual-acero",
+    "name": "Molino manual de acero",
+    "description": "Muelas cónicas de acero inoxidable con 38 puntos de ajuste, de espresso a prensa francesa. Cuerpo de aluminio anodizado, capacidad de 25 g y manivela plegable: cabe en la mochila y muele una dosis en menos de un minuto.",
+    "price": 1250.00,
+    "origin": "Chiapas",
+    "category": "accesorios",
+    "stock": 7,
+    "image": "/img/acc-molino-manual-acero.svg"
+  },
+  {
+    "id": "acc-balanza-digital",
+    "name": "Balanza digital con temporizador",
+    "description": "Precisión de 0.1 g hasta 3 kg, con temporizador integrado y superficie de silicón resistente al agua. Carga por USB-C y aguanta unas cuatro semanas de uso diario. Sin una balanza, cualquier receta es una suposición.",
+    "price": 780.00,
+    "origin": "Veracruz",
+    "category": "accesorios",
+    "stock": 20,
+    "image": "/img/acc-balanza-digital.svg"
+  }
+]

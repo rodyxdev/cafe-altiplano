@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2a1a12">
+  <title>Página no encontrada — Café Altiplano</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="contenedor encabezado__barra">
+      <a class="marca" href="/index.html">
+        <svg class="marca__grano" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+          <ellipse cx="12" cy="12" rx="7" ry="10" fill="#c9a87c" transform="rotate(-25 12 12)"/>
+          <path d="M12 3c-2 3-2 15 0 18" stroke="#2a1a12" stroke-width="1.6" fill="none" transform="rotate(-25 12 12)"/>
+        </svg>
+        <span>Café Altiplano</span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__enlace" href="/index.html">Catálogo</a>
+        <a class="boton-carrito" href="/carrito.html" data-boton-carrito>
+          <span class="boton-carrito__texto">Carrito</span>
+          <span class="contador-carrito" data-contador-carrito data-vacio="true">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="estado">
+        <div class="estado__icono" aria-hidden="true">☕</div>
+        <h1>Esta página no existe</h1>
+        <p>Quizá el enlace cambió o el producto ya no está disponible.</p>
+        <a class="btn" href="/index.html">Ir al catálogo</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/tienda.js"></script>
+</body>
+</html>

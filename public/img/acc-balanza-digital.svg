@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Balanza digital con temporizador">
+  <title>Balanza digital con temporizador</title>
+  <rect width="400" height="300" fill="#e3e6e3"/>
+  <circle cx="330" cy="58" r="72" fill="#9fb3a6" opacity=".28"/>
+  <circle cx="58" cy="252" r="52" fill="#2f3a35" opacity=".10"/>
+  <g transform="translate(200 158)">
+    <rect x="-96" y="-18" width="192" height="58" rx="14" fill="#2f3a35"/>
+    <rect x="-96" y="-18" width="192" height="20" rx="10" fill="#fff" opacity=".10"/>
+    <rect x="-88" y="-30" width="176" height="16" rx="8" fill="#9fb3a6" opacity=".8"/>
+    <rect x="-56" y="2" width="76" height="26" rx="5" fill="#9fb3a6"/>
+    <text x="-24" y="21" font-family="Helvetica, Arial, sans-serif" font-size="16"
+      font-weight="bold" fill="#1d2420" text-anchor="middle">18.2</text>
+    <text x="8" y="21" font-family="Helvetica, Arial, sans-serif" font-size="11"
+      fill="#1d2420" text-anchor="middle">g</text>
+    <circle cx="52" cy="15" r="9" fill="#9fb3a6" opacity=".75"/>
+    <circle cx="76" cy="15" r="9" fill="#9fb3a6" opacity=".45"/>
+    <ellipse cx="0" cy="-42" rx="58" ry="12" fill="#9fb3a6" opacity=".35"/>
+    <path d="M-30 -52 q30 -22 60 0" stroke="#9fb3a6" stroke-width="3" fill="none" opacity=".5"/>
+  </g>
+</svg>

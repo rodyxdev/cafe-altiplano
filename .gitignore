@@ -1,0 +1,29 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno
+.env
+.env.*
+
+# Respaldos y temporales
+*.bak
+*.backup
+*~
+*.tmp
+*.log
+npm-debug.log*
+
+# Bases de datos locales
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.db
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/

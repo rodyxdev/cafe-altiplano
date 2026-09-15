@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Cafetera V60 de cerámica 02">
+  <title>Cafetera V60 de cerámica 02</title>
+  <rect width="400" height="300" fill="#e8e2da"/>
+  <circle cx="330" cy="58" r="72" fill="#f4f1eb" opacity=".28"/>
+  <circle cx="58" cy="252" r="52" fill="#b8452f" opacity=".10"/>
+  <g transform="translate(200 150)">
+    <path d="M-78 -62 L78 -62 L10 46 L-10 46 Z" fill="#b8452f"/>
+    <path d="M-78 -62 L0 -62 L0 46 L-10 46 Z" fill="#fff" opacity=".12"/>
+    <ellipse cx="0" cy="-62" rx="78" ry="16" fill="#f4f1eb"/>
+    <ellipse cx="0" cy="-62" rx="62" ry="12" fill="#b8452f" opacity=".55"/>
+    <path d="M-52 -50 L-4 40" stroke="#f4f1eb" stroke-width="2" opacity=".5" fill="none"/>
+    <path d="M-20 -56 L-2 42" stroke="#f4f1eb" stroke-width="2" opacity=".5" fill="none"/>
+    <path d="M20 -56 L2 42" stroke="#f4f1eb" stroke-width="2" opacity=".5" fill="none"/>
+    <path d="M52 -50 L4 40" stroke="#f4f1eb" stroke-width="2" opacity=".5" fill="none"/>
+    <rect x="-14" y="46" width="28" height="12" rx="3" fill="#b8452f"/>
+    <rect x="-46" y="58" width="92" height="10" rx="5" fill="#b8452f" opacity=".35"/>
+  </g>
+</svg>

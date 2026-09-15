@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Prensa francesa 800 ml">
+  <title>Prensa francesa 800 ml</title>
+  <rect width="400" height="300" fill="#e4e7ea"/>
+  <circle cx="330" cy="58" r="72" fill="#cfd6dc" opacity=".28"/>
+  <circle cx="58" cy="252" r="52" fill="#4a5560" opacity=".10"/>
+  <g transform="translate(200 152)">
+    <rect x="-52" y="-72" width="104" height="150" rx="10" fill="#cfd6dc" opacity=".6"/>
+    <rect x="-52" y="-6" width="104" height="84" rx="10" fill="#4a5560" opacity=".55"/>
+    <rect x="-52" y="-72" width="104" height="150" rx="10" fill="none" stroke="#4a5560" stroke-width="5"/>
+    <rect x="-58" y="-86" width="116" height="18" rx="6" fill="#4a5560"/>
+    <rect x="-6" y="-116" width="12" height="32" rx="5" fill="#4a5560"/>
+    <circle cx="0" cy="-120" r="11" fill="#4a5560"/>
+    <rect x="-40" y="-10" width="80" height="8" rx="4" fill="#4a5560"/>
+    <path d="M52 -44 q30 26 0 52" stroke="#4a5560" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <rect x="-52" y="60" width="104" height="18" rx="9" fill="#4a5560"/>
+  </g>
+</svg>
