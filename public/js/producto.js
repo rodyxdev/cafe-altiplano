@@ -74,13 +74,17 @@
           'alt="' + T.escapar(producto.name) + '" width="800" height="600">' +
       '</figure>' +
       '<div class="detalle__info">' +
-        '<span class="tarjeta__origen">' + T.escapar(producto.origin) + '</span>' +
+        (producto.origin
+          ? '<span class="tarjeta__origen">' + T.escapar(producto.origin) + '</span>'
+          : '') +
         '<h1>' + T.escapar(producto.name) + '</h1>' +
         '<p class="detalle__precio">' + T.money(producto.price) + '</p>' +
         plantillaEtiquetaStock() +
         '<p class="detalle__descripcion">' + T.escapar(producto.description) + '</p>' +
         '<dl class="ficha">' +
-          '<div><dt>Origen</dt><dd>' + T.escapar(producto.origin) + '</dd></div>' +
+          (producto.origin
+            ? '<div><dt>Origen</dt><dd>' + T.escapar(producto.origin) + '</dd></div>'
+            : '') +
           '<div><dt>Categoría</dt><dd>' + categoriaLegible + '</dd></div>' +
           '<div><dt>Existencias</dt><dd>' + Number(producto.stock) + '</dd></div>' +
           '<div><dt>SKU</dt><dd>' + T.escapar(producto.id) + '</dd></div>' +

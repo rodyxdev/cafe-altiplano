@@ -49,6 +49,15 @@
     return '';
   }
 
+  /**
+   * Eyebrow de origen. Los accesorios tienen origin null (el campo solo
+   * aplica a la región de cultivo del café), así que se omite la línea.
+   */
+  function plantillaOrigen(producto) {
+    if (!producto.origin) return '';
+    return '<span class="tarjeta__origen">' + T.escapar(producto.origin) + '</span>';
+  }
+
   function plantillaTarjeta(producto) {
     var agotado = Number(producto.stock) <= 0;
     var url = 'producto.html?id=' + encodeURIComponent(producto.id);
@@ -61,7 +70,7 @@
             etiquetaStock(producto) +
           '</figure>' +
           '<div class="tarjeta__cuerpo">' +
-            '<span class="tarjeta__origen">' + T.escapar(producto.origin) + '</span>' +
+            plantillaOrigen(producto) +
             '<h3 class="tarjeta__nombre">' + T.escapar(producto.name) + '</h3>' +
             '<span class="tarjeta__precio">' + T.money(producto.price) + '</span>' +
           '</div>' +

@@ -35,7 +35,9 @@
         '</figure>' +
         '<div class="linea__info">' +
           '<h2 class="linea__nombre"><a href="' + url + '">' + T.escapar(p.name) + '</a></h2>' +
-          '<p class="linea__meta">' + T.escapar(p.origin) + ' · ' + T.money(p.price) + ' c/u</p>' +
+          '<p class="linea__meta">' +
+            (p.origin ? T.escapar(p.origin) + ' · ' : '') +
+            T.money(p.price) + ' c/u</p>' +
           '<p class="linea__meta">' +
             (tope <= 0
               ? '<span class="etiqueta etiqueta--agotado">Sin existencias</span>'

@@ -49,16 +49,22 @@ cafe-altiplano/
 reutilizarán como columnas de la tabla `cafe_products` en Supabase en una fase
 posterior:
 
-| campo         | tipo     | notas                                  |
-| ------------- | -------- | -------------------------------------- |
-| `id`          | string   | slug único, también usado como SKU     |
-| `name`        | string   |                                        |
-| `description` | string   |                                        |
-| `price`       | number   | MXN sin formatear, ej. `245.00`        |
-| `origin`      | string   | Chiapas, Veracruz u Oaxaca             |
-| `category`    | string   | `"cafe"` o `"accesorios"`              |
-| `stock`       | number   | entero                                 |
-| `image`       | string   | ruta relativa dentro de `/public/img`  |
+| campo         | tipo          | notas                                            |
+|---------------|---------------|--------------------------------------------------|
+| `id`          | string        | slug único, también usado como SKU               |
+| `name`        | string        |                                                  |
+| `description` | string        |                                                  |
+| `price`       | number        | MXN sin formatear, ej. `245.00`                  |
+| `origin`      | string \| null | región de cultivo del café; `null` en accesorios |
+| `category`    | string        | `"cafe"` o `"accesorios"`                        |
+| `stock`       | number        | entero                                           |
+| `image`       | string        | ruta relativa dentro de `/public/img`            |
+
+`origin` es el único campo nullable: significa estrictamente la región de
+cultivo del café, así que los productos de `category: "accesorios"` lo llevan
+en `null`. La columna `origin` de `cafe_products` en Supabase se creará
+permitiendo NULL. El frontend omite por completo la línea de origen cuando el
+valor es `null`, en vez de mostrarla vacía.
 
 No cambiar nombres ni tipos sin avisar: la migración a Supabase depende de
 que el esquema siga siendo el mismo.

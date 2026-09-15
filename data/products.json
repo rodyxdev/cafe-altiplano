@@ -74,7 +74,7 @@
     "name": "Cafetera V60 de cerámica 02",
     "description": "Cono de cerámica tamaño 02 para 1 a 4 tazas, con las estrías en espiral que dan el flujo parejo característico del método. Incluye 40 filtros de papel y nuestra guía de receta impresa. La cerámica retiene el calor mejor que el plástico y se nota en la taza.",
     "price": 520.00,
-    "origin": "Oaxaca",
+    "origin": null,
     "category": "accesorios",
     "stock": 15,
     "image": "/img/acc-v60-ceramica-02.svg"
@@ -84,7 +84,7 @@
     "name": "Prensa francesa 800 ml",
     "description": "Jarra de vidrio borosilicato con marco de acero inoxidable y filtro de malla doble que deja pasar menos sedimento. Rinde cuatro tazas y desarma por completo para lavarse. El método más indulgente para empezar a moler en casa.",
     "price": 640.00,
-    "origin": "Veracruz",
+    "origin": null,
     "category": "accesorios",
     "stock": 18,
     "image": "/img/acc-prensa-francesa-800.svg"
@@ -94,7 +94,7 @@
     "name": "Molino manual de acero",
     "description": "Muelas cónicas de acero inoxidable con 38 puntos de ajuste, de espresso a prensa francesa. Cuerpo de aluminio anodizado, capacidad de 25 g y manivela plegable: cabe en la mochila y muele una dosis en menos de un minuto.",
     "price": 1250.00,
-    "origin": "Chiapas",
+    "origin": null,
     "category": "accesorios",
     "stock": 7,
     "image": "/img/acc-molino-manual-acero.svg"
@@ -104,7 +104,7 @@
     "name": "Balanza digital con temporizador",
     "description": "Precisión de 0.1 g hasta 3 kg, con temporizador integrado y superficie de silicón resistente al agua. Carga por USB-C y aguanta unas cuatro semanas de uso diario. Sin una balanza, cualquier receta es una suposición.",
     "price": 780.00,
-    "origin": "Veracruz",
+    "origin": null,
     "category": "accesorios",
     "stock": 20,
     "image": "/img/acc-balanza-digital.svg"
