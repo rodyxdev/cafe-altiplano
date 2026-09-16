@@ -41,6 +41,15 @@ function manejadorErrores(err, req, res, _next) {
     return res.status(err.estado).json(cuerpo);
   }
 
+  // Errores de express.json(): son culpa de la petición, no del servidor.
+  // Sin esto un JSON mal formado se reportaría como 500 y ensuciaría el log.
+  if (err && err.type === 'entity.parse.failed') {
+    return res.status(400).json({ error: 'El cuerpo de la petición no es JSON válido.' });
+  }
+  if (err && err.type === 'entity.too.large') {
+    return res.status(413).json({ error: 'El cuerpo de la petición es demasiado grande.' });
+  }
+
   // Todo lo demás es un fallo interno: se registra completo y se responde
   // con un mensaje genérico.
   const id = crypto.randomBytes(6).toString('hex');
