@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="El pago en línea de Café Altiplano estará disponible próximamente.">
+  <meta name="description" content="Checkout de demostración de Café Altiplano. No se procesan pagos reales.">
   <meta name="theme-color" content="#2a1a12">
   <title>Pago — Café Altiplano</title>
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
@@ -41,16 +41,91 @@
 
   <main id="contenido">
     <div class="contenedor">
-      <div class="estado">
-        <div class="estado__icono" aria-hidden="true">🚧</div>
-        <h1>Próximamente</h1>
-        <p>
-          El pago en línea todavía no está habilitado. Tu carrito se queda
-          guardado en este navegador, así que puedes volver cuando abramos
-          el checkout.
-        </p>
-        <a class="btn" href="/carrito.html">Volver al carrito</a>
+
+      <p class="aviso-demo" role="note">
+        <strong>Este es un checkout de demostración.</strong>
+        No se procesan pagos ni se realizan cargos reales. Los datos de tarjeta
+        son decorativos: no se envían a ninguna parte ni se guardan.
+      </p>
+
+      <div id="zona-confirmacion" class="oculto"></div>
+
+      <div id="zona-checkout">
+        <h1>Finalizar pedido</h1>
+
+        <div class="checkout">
+          <form class="formulario" id="form-checkout" novalidate>
+            <fieldset class="campos">
+              <legend>Datos de envío</legend>
+
+              <div class="campo">
+                <label for="nombre">Nombre completo</label>
+                <input id="nombre" name="name" type="text" autocomplete="name"
+                       maxlength="120" required>
+                <p class="campo__error" data-error="name"></p>
+              </div>
+
+              <div class="campo">
+                <label for="correo">Correo electrónico</label>
+                <input id="correo" name="email" type="email" autocomplete="email"
+                       maxlength="254" required>
+                <p class="campo__error" data-error="email"></p>
+              </div>
+
+              <div class="campo">
+                <label for="telefono">Teléfono <span class="campo__opcional">(opcional)</span></label>
+                <input id="telefono" name="phone" type="tel" autocomplete="tel"
+                       maxlength="32" inputmode="tel">
+                <p class="campo__error" data-error="phone"></p>
+              </div>
+
+              <div class="campo">
+                <label for="direccion">Dirección de envío</label>
+                <textarea id="direccion" name="address" rows="3" maxlength="500"
+                          autocomplete="shipping street-address" required></textarea>
+                <p class="campo__ayuda">Calle y número, colonia, ciudad, estado y código postal.</p>
+                <p class="campo__error" data-error="address"></p>
+              </div>
+            </fieldset>
+
+            <fieldset class="campos campos--demo">
+              <legend>Datos de tarjeta <span class="etiqueta etiqueta--pocas">simulación</span></legend>
+              <p class="campo__ayuda">
+                Estos campos no se validan, no se envían al servidor y no se guardan.
+                Están aquí solo para mostrar cómo se vería el flujo completo.
+              </p>
+
+              <div class="campo">
+                <label for="tarjeta">Número de tarjeta</label>
+                <input id="tarjeta" type="text" inputmode="numeric" maxlength="19"
+                       placeholder="4242 4242 4242 4242" autocomplete="off">
+              </div>
+
+              <div class="campo-fila">
+                <div class="campo">
+                  <label for="vencimiento">Vencimiento</label>
+                  <input id="vencimiento" type="text" maxlength="5"
+                         placeholder="12/28" autocomplete="off">
+                </div>
+                <div class="campo">
+                  <label for="cvc">CVC</label>
+                  <input id="cvc" type="text" inputmode="numeric" maxlength="4"
+                         placeholder="123" autocomplete="off">
+                </div>
+              </div>
+            </fieldset>
+
+            <p class="formulario__error oculto" id="error-general" role="alert"></p>
+
+            <button type="submit" class="btn btn--bloque btn--grande" id="btn-pagar">
+              Confirmar pedido (simulación)
+            </button>
+          </form>
+
+          <aside class="resumen" id="zona-resumen" aria-label="Resumen del pedido"></aside>
+        </div>
       </div>
+
     </div>
   </main>
 
@@ -64,5 +139,6 @@
   <div class="avisos" role="status" aria-live="polite"></div>
 
   <script src="/js/tienda.js"></script>
+  <script src="/js/checkout.js"></script>
 </body>
 </html>

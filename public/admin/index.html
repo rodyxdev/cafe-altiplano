@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#2a1a12">
+  <title>Acceso — Café Altiplano</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="admin-encabezado">
+    <div class="contenedor admin-encabezado__barra">
+      <a class="marca" href="/index.html">
+        <svg class="marca__grano" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <ellipse cx="12" cy="12" rx="7" ry="10" fill="#c9a87c" transform="rotate(-25 12 12)"/>
+          <path d="M12 3c-2 3-2 15 0 18" stroke="#2a1a12" stroke-width="1.6" fill="none" transform="rotate(-25 12 12)"/>
+        </svg>
+        <span>Café Altiplano</span>
+      </a>
+      <span class="admin-usuario">Administración</span>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="admin-acceso">
+        <h1>Entrar al panel</h1>
+
+        <form class="formulario" id="form-login" novalidate>
+          <p class="formulario__error oculto" id="error-login" role="alert"></p>
+
+          <fieldset class="campos">
+            <legend>Credenciales</legend>
+
+            <div class="campo">
+              <label for="usuario">Usuario</label>
+              <input id="usuario" name="username" type="text" autocomplete="username"
+                     maxlength="64" required autofocus>
+            </div>
+
+            <div class="campo">
+              <label for="contrasena">Contraseña</label>
+              <input id="contrasena" name="password" type="password"
+                     autocomplete="current-password" maxlength="200" required>
+            </div>
+
+            <button type="submit" class="btn btn--bloque" id="btn-entrar">Entrar</button>
+          </fieldset>
+        </form>
+
+        <p class="campo__ayuda">La sesión se cierra sola tras 2 horas sin actividad.</p>
+      </div>
+    </div>
+  </main>
+
+  <div class="avisos" role="status" aria-live="polite"></div>
+
+  <script src="/js/tienda.js"></script>
+  <script src="/js/admin-login.js"></script>
+</body>
+</html>

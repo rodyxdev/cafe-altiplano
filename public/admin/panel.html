@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#2a1a12">
+  <title>Panel — Café Altiplano</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="admin-encabezado">
+    <div class="contenedor admin-encabezado__barra">
+      <a class="marca" href="/index.html">
+        <svg class="marca__grano" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <ellipse cx="12" cy="12" rx="7" ry="10" fill="#c9a87c" transform="rotate(-25 12 12)"/>
+          <path d="M12 3c-2 3-2 15 0 18" stroke="#2a1a12" stroke-width="1.6" fill="none" transform="rotate(-25 12 12)"/>
+        </svg>
+        <span>Café Altiplano</span>
+      </a>
+      <div class="nav">
+        <span class="admin-usuario" id="admin-usuario"></span>
+        <a class="nav__enlace" href="/index.html">Ver tienda</a>
+        <button type="button" class="btn-mini" id="btn-salir">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <h1>Panel de administración</h1>
+
+      <div class="pestanas" role="tablist">
+        <button type="button" class="pestana" role="tab" data-panel="productos"
+                aria-selected="true">Productos</button>
+        <button type="button" class="pestana" role="tab" data-panel="pedidos"
+                aria-selected="false">Pedidos</button>
+      </div>
+
+      <!-- Productos -->
+      <section id="panel-productos" role="tabpanel">
+        <div class="admin-barra">
+          <p class="conteo-resultados" id="conteo-productos"></p>
+          <button type="button" class="btn" id="btn-nuevo-producto">Nuevo producto</button>
+        </div>
+        <div class="tabla-envoltura">
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>Origen</th>
+                <th class="num">Precio</th>
+                <th class="num">Stock</th>
+                <th class="acciones">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-productos"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Pedidos -->
+      <section id="panel-pedidos" role="tabpanel" class="oculto">
+        <div class="admin-barra">
+          <div class="filtros" id="filtros-pedidos" role="group" aria-label="Filtrar por status">
+            <button type="button" class="filtro" data-status="todos" aria-pressed="true">Todos</button>
+            <button type="button" class="filtro" data-status="pendiente" aria-pressed="false">Pendientes</button>
+            <button type="button" class="filtro" data-status="preparando" aria-pressed="false">Preparando</button>
+            <button type="button" class="filtro" data-status="enviado" aria-pressed="false">Enviados</button>
+          </div>
+          <p class="conteo-resultados" id="conteo-pedidos"></p>
+        </div>
+        <div class="tabla-envoltura">
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th>Pedido</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th class="num">Total</th>
+                <th>Status</th>
+                <th class="acciones">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-pedidos"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="zona-modal"></div>
+  <div class="avisos" role="status" aria-live="polite"></div>
+
+  <script src="/js/tienda.js"></script>
+  <script src="/js/admin-panel.js"></script>
+</body>
+</html>

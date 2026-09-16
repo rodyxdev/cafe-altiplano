@@ -16,7 +16,7 @@
   /* === Constantes ====================================================== */
 
   var CLAVE_CARRITO = 'cafe_altiplano_cart';
-  var RUTA_CATALOGO = '/data/products.json';
+  var RUTA_CATALOGO = '/api/products'; // Fase 2: sale de Supabase, ya no del JSON local
   var EVENTO_CAMBIO = 'carrito:cambio';
   var UMBRAL_POCAS = 10; // stock por debajo del cual mostramos "últimas piezas"
 

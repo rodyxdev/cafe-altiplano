@@ -1,20 +1,36 @@
 {
   "name": "cafe-altiplano",
   "version": "1.0.0",
-  "description": "Catálogo de productos y carrito de compras para Café Altiplano, tostador artesanal de café de especialidad mexicano.",
+  "description": "Catálogo, carrito, checkout simulado y panel de administración para Café Altiplano, tostador artesanal de café de especialidad mexicano.",
   "main": "server.js",
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "hash": "node scripts/hash-password.js",
+    "seed": "node scripts/seed.js",
+    "migrate": "node scripts/migrate.js"
   },
-  "keywords": ["cafe", "catalogo", "carrito", "ecommerce"],
+  "keywords": [
+    "cafe",
+    "catalogo",
+    "carrito",
+    "ecommerce"
+  ],
   "author": "rodyxdev",
   "license": "MIT",
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "@supabase/supabase-js": "^2.116.0",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "pg": "^8.23.0"
   }
 }

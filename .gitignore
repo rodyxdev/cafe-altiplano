@@ -4,6 +4,15 @@ node_modules/
 # Variables de entorno
 .env
 .env.*
+# ...pero la plantilla sin secretos sí se versiona
+!.env.example
+
+# Archivos sueltos donde suelen acabar las llaves pegadas a mano.
+# env.txt (sin punto inicial) NO lo cubria ningun patron anterior.
+env.txt
+*env*.txt
+*.key
+secrets*
 
 # Respaldos y temporales
 *.bak
