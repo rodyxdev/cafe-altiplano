@@ -36,9 +36,11 @@ jobs:
 
       - uses: actions/checkout@v4
 
+      # Node 22+: @supabase/supabase-js necesita WebSocket nativo. Con Node 20
+      # el cliente falla al crearse ("native WebSocket not found").
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '22'
           cache: npm
 
       # Solo dependencias de runtime: el script usa @supabase/supabase-js y dotenv.
