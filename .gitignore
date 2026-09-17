@@ -36,3 +36,7 @@ desktop.ini
 # Editores
 .vscode/
 .idea/
+
+# Vercel CLI: vinculación local del proyecto y .env.local con el token OIDC
+# (este último ya lo cubren .env y .env.* de arriba).
+.vercel
