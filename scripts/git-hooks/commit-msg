@@ -6,10 +6,12 @@
 # desde una terminal puede traer el trailer igual. Este hook lo elimina antes
 # de que el commit se cree.
 #
-# Borra, sin distinguir mayúsculas:
+# Borra, sin distinguir mayúsculas, solo líneas que EMPIEZAN con:
 #   - "Co-Authored-By: Claude ..."
-#   - cualquier "Co-Authored-By: ... <noreply@anthropic.com>"
-#   - "Generated with Claude Code" (con o sin emoji o enlace markdown)
+#   - "Co-Authored-By: ... <noreply@anthropic.com>"
+#   - "Generated with Claude Code" (se admite un emoji, espacios o símbolos
+#     delante, pero no texto: una frase que lo mencione a media línea se
+#     conserva)
 # y las líneas en blanco que queden al final.
 #
 # Instalación: sh scripts/setup-hooks.sh   (.git/hooks no se versiona)
@@ -21,7 +23,7 @@ temporal="$mensaje.sin-atribucion.$$"
 grep -v -i -E \
   -e '^[[:space:]]*co-authored-by:[[:space:]]*claude' \
   -e '^[[:space:]]*co-authored-by:.*noreply@anthropic\.com' \
-  -e 'generated with \[?claude code' \
+  -e '^[^[:alnum:]]*generated with \[?claude code' \
   "$mensaje" > "$temporal" || true
 
 awk '
