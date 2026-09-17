@@ -9,6 +9,10 @@ Oaxaca).
 Los datos viven en Supabase, la API es de Express corriendo como función
 serverless en Vercel, y hay panel de administración con login.
 
+**El panel es una demo pública a propósito:** <https://cafe-altiplano.vercel.app/admin/>
+con usuario `Admin` y contraseña `Admin123`, visibles en la propia pantalla
+de login. Los datos son simulados y se restauran cada 24 horas.
+
 ## Requisitos
 
 - Node.js 18 o superior
@@ -34,6 +38,7 @@ El sitio queda en <http://localhost:3000> y el panel en
 | `npm run migrate` | aplica `db/*.sql` en orden, cada archivo en una transacción |
 | `npm run seed`  | upsert de `data/products.json` en `cafe_products` |
 | `npm run hash`  | `npm run hash -- "contrasena"` → hash bcrypt cost 12 |
+| `npm run reset-demo` | restaura la base a la semilla (lo corre un workflow diario) |
 | `npm run check:headers` | verifica que las cabeceras de `vercel.json` y Express coincidan |
 
 ## Variables de entorno
@@ -199,6 +204,24 @@ Variables en Vercel (Production): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`,
 git push origin main   # primero: vercel --prod sube el árbol local
 vercel --prod
 ```
+
+## Reset diario de la demo
+
+Como cualquiera puede entrar al panel, `.github/workflows/reset-demo.yml` corre
+`scripts/reset-demo.js` todos los días a las 06:00 UTC (y a mano con *Run
+workflow*). El script, con la service role key:
+
+1. borra todos los pedidos (los renglones se van por cascada);
+2. borra los productos cuyo id no está en `data/products.json`;
+3. hace upsert de los 11 productos de la semilla con todos sus campos, lo que
+   revierte ediciones y re-crea originales borrados;
+4. limpia contadores de login de más de un día sin bloqueo vigente;
+
+y al final compara la base contra la semilla campo por campo. Si algo no
+coincide, sale con error y el workflow queda en rojo.
+
+Necesita dos secrets en *Settings → Secrets and variables → Actions*:
+`SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY`.
 
 ## Keep-alive de Supabase
 

@@ -1,0 +1,52 @@
+name: Reset diario de la demo
+
+# El panel de administración es público a propósito (credenciales visibles en
+# el login). Este workflow restaura la base a la semilla una vez al día:
+# borra pedidos, borra productos agregados por visitantes y deshace ediciones.
+on:
+  schedule:
+    # 06:00 UTC (medianoche en el centro de México).
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+# Nunca dos resets al mismo tiempo (p. ej. el cron y uno manual).
+concurrency:
+  group: reset-demo
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  reset:
+    name: Restaurar datos de la semilla
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Comprobar secrets
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "${SUPABASE_URL}" ] || [ -z "${SUPABASE_SERVICE_ROLE_KEY}" ]; then
+            echo "::error::Faltan los secrets SUPABASE_URL y/o SUPABASE_SERVICE_ROLE_KEY en Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # Solo dependencias de runtime: el script usa @supabase/supabase-js y dotenv.
+      - name: Instalar dependencias
+        run: npm ci --omit=dev
+
+      - name: Ejecutar reset
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/reset-demo.js

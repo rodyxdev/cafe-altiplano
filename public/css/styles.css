@@ -1005,3 +1005,28 @@ main { min-height: 60vh; padding-block: 24px 48px; }
 @media (min-width: 860px) {
   .pedido-detalle dl { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Credenciales de demostración en el login del panel. Es público a propósito:
+   va a tamaño de texto normal y con contraste alto, no como letra chica. */
+.aviso-credenciales {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 2px solid var(--cafe-500);
+  border-radius: var(--radio-lg);
+  background: var(--cafe-100);
+  color: var(--cafe-900);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.aviso-credenciales p { margin: 0 0 6px; }
+.aviso-credenciales p:last-child { margin-bottom: 0; }
+.aviso-credenciales code {
+  padding: 2px 8px;
+  border-radius: var(--radio-sm);
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cafe-800);
+}
