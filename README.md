@@ -4,9 +4,10 @@ Catálogo, carrito, checkout simulado y panel de administración para un
 tostador artesanal de café de especialidad mexicano (Chiapas, Veracruz y
 Oaxaca).
 
-**Estado: Fase 2 — backend real.** Los datos viven en Supabase, la API es de
-Express y hay panel de administración con login. Falta el despliegue a Vercel
-(Fase 3).
+**En producción:** <https://cafe-altiplano.vercel.app>
+
+Los datos viven en Supabase, la API es de Express corriendo como función
+serverless en Vercel, y hay panel de administración con login.
 
 ## Requisitos
 
@@ -33,6 +34,7 @@ El sitio queda en <http://localhost:3000> y el panel en
 | `npm run migrate` | aplica `db/*.sql` en orden, cada archivo en una transacción |
 | `npm run seed`  | upsert de `data/products.json` en `cafe_products` |
 | `npm run hash`  | `npm run hash -- "contrasena"` → hash bcrypt cost 12 |
+| `npm run check:headers` | verifica que las cabeceras de `vercel.json` y Express coincidan |
 
 ## Variables de entorno
 
@@ -175,6 +177,36 @@ principal.
 - **`trust proxy`** se activa solo con `TRUST_PROXY=1`, para que nadie pueda
   falsear su IP con `X-Forwarded-For` en local y saltarse el rate limiting.
 
-## Qué falta (Fase 3)
+## Despliegue (Vercel)
 
-- Despliegue a Vercel
+Mismo esquema que Estudio Lumen:
+
+- Vercel sirve `public/` directamente desde su CDN.
+- Solo `/api/*` pasa por la función serverless `api/index.js`, que exporta
+  la misma app de Express que `server.js` monta en local con `listen()`.
+- Como los estáticos del CDN no pasan por Express, `vercel.json` repite las
+  cabeceras de seguridad. `npm run check:headers` confirma que no se
+  desincronicen.
+- `.vercelignore` deja fuera `db/`, `scripts/`, `data/`, `README.md` y
+  cualquier archivo con "env" en el nombre: en producción no se migra ni se
+  siembra.
+
+Variables en Vercel (Production): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`,
+`ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `JWT_SECRET`, `NODE_ENV=production` y
+`TRUST_PROXY=true`. `DATABASE_URL` no se sube: solo la usa `npm run migrate`.
+
+```bash
+git push origin main   # primero: vercel --prod sube el árbol local
+vercel --prod
+```
+
+## Keep-alive de Supabase
+
+Los proyectos gratuitos de Supabase se pausan tras 7 días sin actividad.
+`.github/workflows/keep-supabase-alive.yml` hace un `GET /api/products` contra
+producción a las 12:00 UTC los días 1, 4, 7… de cada mes (nunca más de 3 días
+entre ejecuciones) y falla si la respuesta no trae productos. Se puede lanzar
+a mano desde la pestaña Actions con *Run workflow*.
+
+Este Supabase lo comparten también los Proyectos 6 y 7, así que este
+workflow los mantiene despiertos a todos.
