@@ -69,5 +69,14 @@ module.exports = {
     maxIntentos: 5,
     ventana: '15 minutes',
     bloqueo: '15 minutes'
+  },
+
+  // El checkout es anónimo y cada pedido descuenta stock real: se limita por
+  // IP para que nadie genere pedidos en ráfaga. 10 por hora no estorba a
+  // quien prueba el flujo un par de veces.
+  rateLimitCheckout: {
+    pedidosPorVentana: 10,
+    ventana: '1 hour',
+    bloqueo: '1 hour'
   }
 };

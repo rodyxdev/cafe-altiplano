@@ -16,6 +16,7 @@ const router = express.Router();
 
 const ESTADOS = ['pendiente', 'preparando', 'enviado'];
 const MAX_PEDIDOS = 200;
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // Los renglones se traen anidados con el pedido: el panel muestra el detalle
 // sin una segunda petición.
@@ -73,7 +74,10 @@ router.patch('/:id', asyncHandler(async (req, res) => {
   const id = sanitizar.texto(req.params.id, 64);
   const status = sanitizar.texto(req.body && req.body.status, 32).toLowerCase();
 
-  if (!id) throw new ErrorHttp(400, 'Id de pedido no válido.');
+  // Los ids de pedido son UUID. Sin esta validación, Postgres rechaza el
+  // valor con "invalid input syntax for type uuid" y la petición terminaba
+  // en un 500 genérico en vez de un 400.
+  if (!UUID.test(id)) throw new ErrorHttp(400, 'Id de pedido no válido.');
   if (ESTADOS.indexOf(status) === -1) {
     throw new ErrorHttp(400, 'El status debe ser: ' + ESTADOS.join(', ') + '.');
   }

@@ -15,6 +15,7 @@
 
 const express = require('express');
 const supabase = require('../lib/supabase');
+const config = require('../config');
 const { ErrorHttp, asyncHandler, fallaSupabase } = require('../lib/errores');
 const sanitizar = require('../lib/sanitizar');
 
@@ -36,6 +37,14 @@ function leerItems(bruto) {
   for (const crudo of bruto) {
     if (!crudo || typeof crudo !== 'object') {
       throw new ErrorHttp(400, 'Hay un renglón del carrito con formato inválido.');
+    }
+    // productId solo puede ser texto o número. Un objeto o un arreglo se
+    // rechazan antes de convertirlo a cadena: si no, acabaría como
+    // "[object Object]" dentro de los mensajes de error.
+    const tipoId = typeof crudo.productId;
+    const idValido = tipoId === 'string' || (tipoId === 'number' && Number.isFinite(crudo.productId));
+    if (!idValido) {
+      throw new ErrorHttp(400, 'Hay un renglón del carrito con un producto inválido.');
     }
     const productId = sanitizar.texto(crudo.productId, 64);
     const quantity = sanitizar.entero(crudo.quantity, 1, MAX_POR_LINEA);
@@ -83,9 +92,42 @@ function leerCliente(bruto) {
   return { name, email, phone, address };
 }
 
+/**
+ * Rate limiting por IP, persistente en Supabase. Reutiliza la RPC atómica del
+ * login (cafe_login_intento) y su tabla, con claves "checkout:<ip>" que no
+ * chocan con las "login:<ip>".
+ *
+ * La RPC bloquea en la misma llamada que alcanza p_max, así que permite
+ * p_max - 1 llamadas por ventana; por eso se le pasa pedidosPorVentana + 1.
+ */
+async function aplicarLimite(req) {
+  const ip = sanitizar.texto(req.ip || 'desconocida', 64);
+  const { data, error } = await supabase.rpc('cafe_login_intento', {
+    p_clave: 'checkout:' + ip,
+    p_max: config.rateLimitCheckout.pedidosPorVentana + 1,
+    p_ventana: config.rateLimitCheckout.ventana,
+    p_bloqueo: config.rateLimitCheckout.bloqueo
+  });
+  if (error) throw fallaSupabase('cafe_login_intento (checkout)', error);
+
+  if (data && data.permitido === false) {
+    const hasta = data.bloqueado_hasta ? new Date(data.bloqueado_hasta) : null;
+    const minutos = hasta ? Math.max(1, Math.ceil((hasta - Date.now()) / 60000)) : 60;
+    throw new ErrorHttp(429,
+      'Hiciste demasiados pedidos en poco tiempo. Vuelve a intentarlo en ' + minutos +
+      ' minuto' + (minutos === 1 ? '' : 's') + '.',
+      { bloqueadoHasta: data.bloqueado_hasta });
+  }
+}
+
 router.post('/', asyncHandler(async (req, res) => {
+  // Primero la validación, que no toca la base: un error de captura en el
+  // formulario no debe gastar intentos. Lo que sí llega a la base (pedidos
+  // creados o rechazados por stock) cuenta contra el límite.
   const items = leerItems(req.body && req.body.items);
   const customer = leerCliente(req.body && req.body.customer);
+
+  await aplicarLimite(req);
 
   const { data, error } = await supabase.rpc('cafe_crear_pedido', {
     p_items: items,

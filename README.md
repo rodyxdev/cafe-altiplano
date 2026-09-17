@@ -175,6 +175,10 @@ principal.
 - **Rate limiting persistente** en el login: 5 intentos por IP cada 15
   minutos, contados con una RPC atómica en Postgres. Vive en la base y no en
   memoria porque en serverless cada invocación puede ser un proceso nuevo.
+- **Rate limiting en el checkout**: 10 pedidos por IP por hora, con la misma
+  RPC y tabla que el login (claves `checkout:<ip>`). La validación del
+  formulario corre antes y no gasta intentos; los pedidos creados y los
+  rechazados por stock sí cuentan.
 - **Errores 500**: al cliente le llega siempre un mensaje genérico con un
   identificador; el stack y el error de Postgres solo van al log del servidor.
 - **Saneamiento** de entradas: se eliminan bytes nulos y caracteres de control
