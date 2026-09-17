@@ -39,16 +39,109 @@
     </div>
   </header>
 
-  <main id="contenido">
+  <main id="contenido" class="principal-inicio">
+    <!-- Hero -------------------------------------------------------------- -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="contenedor hero__rejilla">
+        <div class="hero__texto">
+          <p class="sobretitulo">Tostador de especialidad · Hecho en México</p>
+          <h1 id="hero-titulo" class="hero__titulo">Café de altura, tostado en lotes pequeños.</h1>
+          <p class="hero__entrada">
+            Tostamos cada semana y enviamos dentro de los tres días siguientes al
+            tueste, para que el café llegue a tu taza en su mejor momento.
+          </p>
+          <a class="btn btn--grande" href="#catalogo">Ver el catálogo</a>
+        </div>
+
+        <!-- Único momento animado del sitio: la cifra de altitud aparece una
+             vez al cargar (desactivado con prefers-reduced-motion). -->
+        <figure class="altitud" aria-labelledby="altitud-pie">
+          <p class="altitud__cifra" aria-hidden="true">
+            <span class="altitud__numero">1,200–1,600</span>
+            <span class="altitud__unidad">m s.n.m.</span>
+          </p>
+          <span class="altitud__regla" aria-hidden="true"></span>
+          <figcaption id="altitud-pie" class="altitud__pie">
+            Entre 1,200 y 1,600 metros sobre el nivel del mar crecen los lotes
+            que tostamos en Chiapas, Veracruz y Oaxaca.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Origen ------------------------------------------------------------ -->
+    <section class="origen" aria-labelledby="origen-titulo">
+      <div class="contenedor origen__rejilla">
+        <div class="origen__texto">
+          <p class="sobretitulo">Origen</p>
+          <h2 id="origen-titulo" class="seccion__titulo">Tres sierras, trato directo.</h2>
+          <p>
+            Compramos a productores y cooperativas con quienes trabajamos cosecha
+            tras cosecha, sin intermediarios. Conocemos la finca, el beneficio y
+            el año de cada lote, y pagamos por encima del precio de bolsa porque
+            la calidad empieza mucho antes del tostador.
+          </p>
+          <p>
+            Cada región deja su huella en la taza: la altura de la Sierra Madre
+            de Chiapas da acidez brillante y dulzor a panela; las laderas de
+            Veracruz, bajo sombra, dan tazas limpias y cítricas; y la sierra de
+            Oaxaca, notas de almendra, agave y fruta madura.
+          </p>
+        </div>
+
+        <figure class="perfil" aria-labelledby="perfil-pie">
+          <svg class="perfil__svg" viewBox="0 0 480 260" role="img"
+               aria-labelledby="perfil-titulo">
+            <title id="perfil-titulo">Perfil de altitud de las tres regiones de cultivo</title>
+            <!-- Guías de altitud -->
+            <g class="perfil__guias">
+              <line x1="52" y1="60" x2="468" y2="60"/>
+              <line x1="52" y1="130" x2="468" y2="130"/>
+              <line x1="52" y1="200" x2="468" y2="200"/>
+            </g>
+            <g class="perfil__escala">
+              <text x="46" y="65" text-anchor="end">1,700</text>
+              <text x="46" y="135" text-anchor="end">1,200</text>
+              <text x="46" y="205" text-anchor="end">700</text>
+            </g>
+            <!-- Silueta de sierra: una sola línea -->
+            <path class="perfil__sierra"
+                  d="M56 228 L90 190 L120 205 L150 150 L175 165 L200 138 L230 175 L265 120 L290 140 L315 88 L340 118 L370 74 L400 104 L425 92 L460 150"/>
+            <!-- Rangos por región (escala: 1,700 m = y60, 700 m = y200).
+                 Nombre y rango van arriba de cada barra para no cruzar la sierra. -->
+            <g class="perfil__region">
+              <line x1="140" y1="116" x2="140" y2="172"/>
+              <circle cx="140" cy="144" r="5"/>
+              <text x="140" y="84" text-anchor="middle">Veracruz</text>
+              <text class="perfil__rango" x="140" y="104" text-anchor="middle">900–1,300 m</text>
+            </g>
+            <g class="perfil__region">
+              <line x1="265" y1="74" x2="265" y2="158"/>
+              <circle cx="265" cy="116" r="5"/>
+              <text x="265" y="34" text-anchor="middle">Oaxaca</text>
+              <text class="perfil__rango" x="265" y="55" text-anchor="middle">1,000–1,600 m</text>
+            </g>
+            <g class="perfil__region">
+              <line x1="395" y1="60" x2="395" y2="130"/>
+              <circle cx="395" cy="95" r="5"/>
+              <text x="395" y="18" text-anchor="middle">Chiapas</text>
+              <text class="perfil__rango" x="395" y="39" text-anchor="middle">1,200–1,700 m</text>
+            </g>
+          </svg>
+          <figcaption id="perfil-pie" class="perfil__pie">
+            Rangos de altitud de cultivo por región, en metros sobre el nivel del mar.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Catálogo ---------------------------------------------------------- -->
+    <section class="catalogo" id="catalogo" aria-labelledby="catalogo-titulo">
     <div class="contenedor">
-      <section class="hero">
-        <h1>Café de especialidad mexicano</h1>
-        <p>
-          Tostamos en lotes pequeños cada semana. Trabajamos directo con
-          productores de Chiapas, Veracruz y Oaxaca, y enviamos el café dentro
-          de los tres días siguientes al tueste.
-        </p>
-      </section>
+      <div class="catalogo__encabezado">
+        <p class="sobretitulo">Catálogo</p>
+        <h2 id="catalogo-titulo" class="seccion__titulo">Cafés y accesorios</h2>
+      </div>
 
       <div class="barra-catalogo">
         <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoría">
@@ -68,18 +161,27 @@
 
       <div id="zona-estado" class="oculto"></div>
     </div>
+    </section>
   </main>
 
   <footer class="pie">
     <div class="contenedor pie__contenido">
-      <p>© 2026 Café Altiplano · Tueste artesanal mexicano</p>
-      <p>Hecho en México · Precios en MXN</p>
+      <div class="pie__marca">
+        <p class="pie__nombre">Café Altiplano</p>
+        <p>Tueste artesanal de café de altura mexicano. Precios en MXN.</p>
+      </div>
+      <div class="pie__demo">
+        <a class="pie__enlace" href="/admin/">Panel de administración (demo pública)</a>
+        <p>Proyecto de portafolio: el panel es de acceso libre y los datos son simulados.</p>
+      </div>
+      <p class="pie__legal">© 2026 Café Altiplano · Hecho en México</p>
     </div>
   </footer>
 
   <div class="avisos" role="status" aria-live="polite"></div>
 
   <script src="/js/tienda.js"></script>
+  <script src="/js/fichas.js"></script>
   <script src="/js/catalogo.js"></script>
 </body>
 </html>

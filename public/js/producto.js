@@ -68,28 +68,38 @@
 
     var categoriaLegible = producto.category === 'cafe' ? 'Café' : 'Accesorios';
 
+    // Ficha técnica editorial (fichas.js, solo presentación). Si el producto
+    // no tiene ficha, esas líneas simplemente no aparecen.
+    var F = window.Fichas;
+    var datos = F && F.datos[producto.id] ? F.datos[producto.id] : {};
+
     contenedor.innerHTML = '' +
       '<figure class="detalle__figura">' +
         '<img class="detalle__imagen" src="' + T.escapar(producto.image) + '" ' +
           'alt="' + T.escapar(producto.name) + '" width="800" height="600">' +
       '</figure>' +
       '<div class="detalle__info">' +
-        (producto.origin
-          ? '<span class="tarjeta__origen">' + T.escapar(producto.origin) + '</span>'
-          : '') +
+        '<p class="sobretitulo">' + categoriaLegible + '</p>' +
         '<h1>' + T.escapar(producto.name) + '</h1>' +
+        (F ? F.lineaFicha(producto) : '') +
         '<p class="detalle__precio">' + T.money(producto.price) + '</p>' +
         plantillaEtiquetaStock() +
+        (F ? F.barraTueste(producto) : '') +
+        // Acciones arriba de la descripción: la compra queda en la primera
+        // pantalla. Solo cambia el orden; zona-acciones mantiene su id.
+        '<div id="zona-acciones">' + plantillaAcciones() + '</div>' +
         '<p class="detalle__descripcion">' + T.escapar(producto.description) + '</p>' +
         '<dl class="ficha">' +
           (producto.origin
             ? '<div><dt>Origen</dt><dd>' + T.escapar(producto.origin) + '</dd></div>'
             : '') +
+          (datos.altitud ? '<div><dt>Altitud</dt><dd>' + T.escapar(datos.altitud) + '</dd></div>' : '') +
+          (datos.proceso ? '<div><dt>Proceso</dt><dd>' + T.escapar(datos.proceso) + '</dd></div>' : '') +
+          (datos.tueste ? '<div><dt>Tueste</dt><dd>' + F.niveles[datos.tueste] + '</dd></div>' : '') +
           '<div><dt>Categoría</dt><dd>' + categoriaLegible + '</dd></div>' +
           '<div><dt>Existencias</dt><dd>' + Number(producto.stock) + '</dd></div>' +
           '<div><dt>SKU</dt><dd>' + T.escapar(producto.id) + '</dd></div>' +
         '</dl>' +
-        '<div id="zona-acciones">' + plantillaAcciones() + '</div>' +
       '</div>';
   }
 

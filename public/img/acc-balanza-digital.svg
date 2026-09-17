@@ -1,8 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Balanza digital con temporizador">
   <title>Balanza digital con temporizador</title>
-  <rect width="400" height="300" fill="#e3e6e3"/>
-  <circle cx="330" cy="58" r="72" fill="#9fb3a6" opacity=".28"/>
-  <circle cx="58" cy="252" r="52" fill="#2f3a35" opacity=".10"/>
   <g transform="translate(200 158)">
     <rect x="-96" y="-18" width="192" height="58" rx="14" fill="#2f3a35"/>
     <rect x="-96" y="-18" width="192" height="20" rx="10" fill="#fff" opacity=".10"/>

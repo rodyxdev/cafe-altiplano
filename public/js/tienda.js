@@ -488,9 +488,30 @@
 
   /* === Arranque ======================================================== */
 
+  /**
+   * Solo presentación: el header ya es sticky por CSS; esta clase le agrega
+   * sombra cuando la página se desplazó, para que se lea sobre el contenido.
+   */
+  function sombraEncabezado() {
+    var encabezado = document.querySelector('.encabezado');
+    if (!encabezado) return;
+    var pendiente = false;
+    function actualizar() {
+      pendiente = false;
+      encabezado.classList.toggle('encabezado--desplazado', global.scrollY > 8);
+    }
+    global.addEventListener('scroll', function () {
+      if (pendiente) return;
+      pendiente = true;
+      global.requestAnimationFrame(actualizar);
+    }, { passive: true });
+    actualizar();
+  }
+
   function iniciar() {
     UI.montarContador();
     UI.marcarNavActiva();
+    sombraEncabezado();
   }
 
   if (document.readyState === 'loading') {

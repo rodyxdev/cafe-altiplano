@@ -1,8 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Prensa francesa 800 ml">
   <title>Prensa francesa 800 ml</title>
-  <rect width="400" height="300" fill="#e4e7ea"/>
-  <circle cx="330" cy="58" r="72" fill="#cfd6dc" opacity=".28"/>
-  <circle cx="58" cy="252" r="52" fill="#4a5560" opacity=".10"/>
   <g transform="translate(200 152)">
     <rect x="-52" y="-72" width="104" height="150" rx="10" fill="#cfd6dc" opacity=".6"/>
     <rect x="-52" y="-6" width="104" height="84" rx="10" fill="#4a5560" opacity=".55"/>

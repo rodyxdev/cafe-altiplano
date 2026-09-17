@@ -1,8 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Jaltenango — Chiapas">
   <title>Jaltenango — Chiapas</title>
-  <rect width="400" height="300" fill="#e9dcc7"/>
-  <circle cx="330" cy="58" r="72" fill="#c9a87c" opacity=".28"/>
-  <circle cx="58" cy="252" r="52" fill="#4a3526" opacity=".10"/>
   <g transform="translate(130 58)">
     <path d="M14 26 H126 L138 214 A10 10 0 0 1 128 226 H12 A10 10 0 0 1 2 214 Z" fill="#4a3526"/>
     <path d="M14 26 H70 L66 226 H12 A10 10 0 0 1 2 214 Z" fill="#ffffff" opacity=".07"/>

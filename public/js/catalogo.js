@@ -50,12 +50,18 @@
   }
 
   /**
-   * Eyebrow de origen. Los accesorios tienen origin null (el campo solo
-   * aplica a la región de cultivo del café), así que se omite la línea.
+   * Línea tipo ficha técnica (origen · altitud · proceso) y barra de tueste.
+   * Vienen de fichas.js, que es solo presentación. Si un producto no tiene
+   * ficha, cae a mostrar solo el origen; los accesorios tienen origin null y
+   * en ese caso no se pinta nada.
    */
-  function plantillaOrigen(producto) {
-    if (!producto.origin) return '';
-    return '<span class="tarjeta__origen">' + T.escapar(producto.origin) + '</span>';
+  function plantillaFicha(producto) {
+    if (window.Fichas) return window.Fichas.lineaFicha(producto);
+    return producto.origin ? '<p class="ficha-linea">' + T.escapar(producto.origin) + '</p>' : '';
+  }
+
+  function plantillaTueste(producto) {
+    return window.Fichas ? window.Fichas.barraTueste(producto) : '';
   }
 
   function plantillaTarjeta(producto) {
@@ -70,8 +76,9 @@
             etiquetaStock(producto) +
           '</figure>' +
           '<div class="tarjeta__cuerpo">' +
-            plantillaOrigen(producto) +
             '<h3 class="tarjeta__nombre">' + T.escapar(producto.name) + '</h3>' +
+            plantillaFicha(producto) +
+            plantillaTueste(producto) +
             '<span class="tarjeta__precio">' + T.money(producto.price) + '</span>' +
           '</div>' +
         '</a>' +
@@ -97,7 +104,18 @@
     rejilla.classList.remove('oculto');
   }
 
-  function pintar() {
+  /**
+   * Transición al cambiar de categoría. Solo se dispara por acción del
+   * usuario, nunca en la carga inicial (el único movimiento de carga es el
+   * del hero). Reduced-motion la anula desde el CSS.
+   */
+  function animarCambio() {
+    rejilla.classList.remove('rejilla--cambio');
+    void rejilla.offsetWidth; // reinicia la animación
+    rejilla.classList.add('rejilla--cambio');
+  }
+
+  function pintar(animar) {
     var lista = filtrados();
 
     if (!lista.length) {
@@ -113,15 +131,33 @@
     mostrarRejilla();
     rejilla.innerHTML = lista.map(plantillaTarjeta).join('');
     conteo.textContent = lista.length === 1 ? '1 producto' : lista.length + ' productos';
+    if (animar) animarCambio();
   }
 
-  function aplicarFiltro(categoria) {
+  function aplicarFiltro(categoria, animar) {
     categoriaActiva = CATEGORIAS_VALIDAS.indexOf(categoria) !== -1 ? categoria : 'todos';
     Array.prototype.forEach.call(filtros.querySelectorAll('[data-categoria]'), function (btn) {
       btn.setAttribute('aria-pressed', btn.dataset.categoria === categoriaActiva ? 'true' : 'false');
     });
     escribirCategoriaEnURL(categoriaActiva);
-    pintar();
+    pintar(animar);
+  }
+
+  /**
+   * Confirmación visual en el propio botón tras agregar. Solo presentación:
+   * la lógica del carrito y los avisos no cambian.
+   */
+  function confirmarEnBoton(btn) {
+    if (!btn.dataset.textoOriginal) btn.dataset.textoOriginal = btn.textContent;
+    clearTimeout(Number(btn.dataset.temporizador));
+    btn.classList.remove('btn--agregado');
+    void btn.offsetWidth;
+    btn.classList.add('btn--agregado');
+    btn.textContent = 'Agregado ✓';
+    btn.dataset.temporizador = String(setTimeout(function () {
+      btn.classList.remove('btn--agregado');
+      btn.textContent = btn.dataset.textoOriginal;
+    }, 1600));
   }
 
   function alAgregar(id) {
@@ -132,6 +168,7 @@
     }
 
     var r = T.Carrito.agregar(producto.id, 1, producto.stock);
+    var exito = r.estado === 'agregado' || r.estado === 'incrementado';
 
     if (r.estado === 'agotado') {
       T.UI.aviso(producto.name + ' está agotado por ahora.', 'error');
@@ -144,6 +181,7 @@
     } else {
       T.UI.aviso(producto.name + ' se agregó al carrito (' + r.cantidad + ').', 'ok');
     }
+    return exito;
   }
 
   /* --- Eventos --------------------------------------------------------- */
@@ -151,14 +189,14 @@
   filtros.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-categoria]');
     if (!btn) return;
-    aplicarFiltro(btn.dataset.categoria);
+    aplicarFiltro(btn.dataset.categoria, true);
   });
 
   rejilla.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-agregar]');
     if (!btn || btn.disabled) return;
     e.preventDefault();
-    alAgregar(btn.dataset.agregar);
+    if (alAgregar(btn.dataset.agregar)) confirmarEnBoton(btn);
   });
 
   /* --- Carga ----------------------------------------------------------- */
