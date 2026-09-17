@@ -1,0 +1,22 @@
+# Lo que no hace falta en runtime no se sube a Vercel.
+# El servidor en producción no corre migraciones ni siembras.
+
+# Base de datos y scripts de mantenimiento (solo local)
+db/
+scripts/
+data/
+
+# Documentación
+README.md
+
+# Variables de entorno y cualquier archivo con "env" en el nombre, a
+# cualquier profundidad. node_modules no se sube (Vercel lo instala en el
+# build), así que estos patrones no afectan a paquetes como dotenv.
+.env
+.env*
+*env*
+
+# Herramientas de desarrollo
+.github/
+.vscode/
+.idea/

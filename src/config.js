@@ -6,7 +6,9 @@
  */
 'use strict';
 
-require('dotenv').config();
+// En Vercel no hay archivo .env: las variables llegan del entorno y dotenv
+// simplemente no encuentra nada. quiet evita su línea de log en cada arranque.
+require('dotenv').config({ quiet: true });
 
 const REQUERIDAS = [
   'SUPABASE_URL',
@@ -42,7 +44,8 @@ const esProduccion = process.env.NODE_ENV === 'production';
 module.exports = {
   puerto: Number(process.env.PORT) || 3000,
   esProduccion,
-  confiarEnProxy: process.env.TRUST_PROXY === '1',
+  // Acepta TRUST_PROXY=1 o TRUST_PROXY=true.
+  confiarEnProxy: ['1', 'true'].indexOf(String(process.env.TRUST_PROXY || '').trim().toLowerCase()) !== -1,
 
   supabase: {
     url: process.env.SUPABASE_URL.trim(),

@@ -31,12 +31,19 @@ function claveIntentos(req) {
 }
 
 /**
- * Hash de descarte, generado al arrancar con el mismo coste que el real.
- * Sirve para gastar el mismo tiempo de CPU cuando el usuario no coincide:
- * si se saltara la comparacion, el tiempo de respuesta delataria si el
- * nombre de usuario existe.
+ * Hash de descarte con el mismo coste que el real. Sirve para gastar el
+ * mismo tiempo de CPU cuando el usuario no coincide: si se saltara la
+ * comparación, el tiempo de respuesta delataría si el nombre existe.
+ *
+ * Se genera la primera vez que se necesita y no al cargar el módulo: en
+ * serverless cada arranque en frío cargaría este archivo, y un bcrypt de
+ * coste 12 (~250 ms) retrasaría también las peticiones del catálogo.
  */
-const HASH_SENUELO = bcrypt.hashSync('senuelo-que-nadie-usa', 12);
+let hashSenuelo = null;
+function senuelo() {
+  if (!hashSenuelo) hashSenuelo = bcrypt.hashSync('senuelo-que-nadie-usa', 12);
+  return hashSenuelo;
+}
 
 router.post('/login', asyncHandler(async (req, res) => {
   const usuario = sanitizar.texto(req.body && req.body.username, 64);
@@ -66,7 +73,7 @@ router.post('/login', asyncHandler(async (req, res) => {
   // revelar por el tiempo de respuesta si el nombre existe.
   const hashEsperado = usuario === config.admin.usuario
     ? config.admin.hashContrasena
-    : HASH_SENUELO;
+    : senuelo();
   const contrasenaOk = await bcrypt.compare(contrasena, hashEsperado);
   const credencialesOk = usuario === config.admin.usuario && contrasenaOk;
 
