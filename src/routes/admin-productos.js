@@ -33,12 +33,17 @@ function leerProducto(cuerpo, parcial) {
 
   if (!parcial || presente('name')) {
     const name = sanitizar.texto(b.name, 120);
-    if (name.length < 2) errores.name = 'El nombre es obligatorio.';
+    // Segunda capa contra XSS almacenado: no entra HTML a la base aunque el
+    // render también escape. El panel es público, así que esto importa.
+    if (sanitizar.contieneHtml(name)) errores.name = sanitizar.MENSAJE_HTML;
+    else if (name.length < 2) errores.name = 'El nombre es obligatorio.';
     else out.name = name;
   }
 
   if (!parcial || presente('description')) {
-    out.description = sanitizar.textoLargo(b.description, 2000);
+    const description = sanitizar.textoLargo(b.description, 2000);
+    if (sanitizar.contieneHtml(description)) errores.description = sanitizar.MENSAJE_HTML;
+    else out.description = description;
   }
 
   if (!parcial || presente('price')) {
@@ -63,14 +68,17 @@ function leerProducto(cuerpo, parcial) {
   }
 
   if (!parcial || presente('image')) {
-    out.image = sanitizar.texto(b.image, 300);
+    const image = sanitizar.rutaImagen(b.image);
+    if (image === null) errores.image = 'La imagen debe ser una ruta local como /img/mi-cafe.svg.';
+    else out.image = image;
   }
 
   // origin es nullable a propósito: solo aplica a la región de cultivo del
   // café. Vacío o ausente en un accesorio se guarda como NULL.
   if (!parcial || presente('origin')) {
     const origin = sanitizar.texto(b.origin, 80);
-    out.origin = origin === '' ? null : origin;
+    if (sanitizar.contieneHtml(origin)) errores.origin = sanitizar.MENSAJE_HTML;
+    else out.origin = origin === '' ? null : origin;
   }
 
   const categoriaFinal = out.category;

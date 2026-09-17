@@ -58,11 +58,22 @@ function leerCliente(bruto) {
   const phone = sanitizar.texto(c.phone, 32);
   const address = sanitizar.textoLargo(c.address, 500);
 
+  // Segunda capa contra XSS almacenado: el render ya escapa, pero en la base
+  // no debe entrar HTML. El endpoint es anónimo y estos datos se muestran en
+  // el panel del admin, así que se rechazan antes de llegar a Supabase.
   const errores = {};
-  if (name.length < 3) errores.name = 'Escribe tu nombre completo.';
-  if (!email) errores.email = 'Escribe un correo electrónico válido.';
-  if (address.length < 10) errores.address = 'Escribe la dirección de envío completa.';
-  if (phone && phone.replace(/\D/g, '').length < 10) {
+  if (sanitizar.contieneHtml(name)) errores.name = sanitizar.MENSAJE_HTML;
+  else if (name.length < 3) errores.name = 'Escribe tu nombre completo.';
+
+  if (sanitizar.contieneHtml(sanitizar.texto(c.email, 254))) errores.email = sanitizar.MENSAJE_HTML;
+  else if (!email) errores.email = 'Escribe un correo electrónico válido.';
+
+  if (sanitizar.contieneHtml(address)) errores.address = sanitizar.MENSAJE_HTML;
+  else if (address.length < 10) errores.address = 'Escribe la dirección de envío completa.';
+
+  if (sanitizar.contieneHtml(phone)) {
+    errores.phone = sanitizar.MENSAJE_HTML;
+  } else if (phone && phone.replace(/\D/g, '').length < 10) {
     errores.phone = 'El teléfono debe tener al menos 10 dígitos.';
   }
 

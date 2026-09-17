@@ -208,7 +208,8 @@
       '</div>' +
       '<div class="campo"><label for="m-image">Imagen (ruta)</label>' +
         '<input id="m-image" name="image" type="text" maxlength="300" ' +
-        'value="' + T.escapar(v.image || '/img/') + '"></div>' +
+        'placeholder="/img/mi-cafe.svg" value="' + T.escapar(v.image || '') + '">' +
+        '<p class="campo__ayuda">Ruta local dentro de /img/. Puede quedar vacía.</p></div>' +
       '<div class="campo"><label for="m-description">Descripción</label>' +
         '<textarea id="m-description" name="description" rows="4" maxlength="2000">' +
         T.escapar(v.description || '') + '</textarea></div>';
