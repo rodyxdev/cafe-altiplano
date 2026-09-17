@@ -17,6 +17,7 @@ README.md
 *env*
 
 # Herramientas de desarrollo
+.claude/
 .github/
 .vscode/
 .idea/

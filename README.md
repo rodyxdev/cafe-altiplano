@@ -41,6 +41,23 @@ El sitio queda en <http://localhost:3000> y el panel en
 | `npm run reset-demo` | restaura la base a la semilla (lo corre un workflow diario) |
 | `npm run check:headers` | verifica que las cabeceras de `vercel.json` y Express coincidan |
 
+## Hooks de git (una vez por clon)
+
+```bash
+sh scripts/setup-hooks.sh
+```
+
+Instala `scripts/git-hooks/commit-msg` en `.git/hooks/` (git no versiona esa
+carpeta, por eso hay que correrlo en cada clon). El hook quita del mensaje
+cualquier `Co-Authored-By: Claude`, co-autor con `noreply@anthropic.com` o
+"Generated with Claude Code" antes de crear el commit.
+
+Es la segunda capa: la primera es `.claude/settings.json`
+(`"attribution": { "commit": "", "pr": "" }`), versionado con el repo. El hook
+cubre los commits armados a mano desde una terminal, donde ese ajuste puede
+no aplicarse. `git commit --no-verify` se salta cualquier hook, así que no se
+usa en este repo.
+
 ## Variables de entorno
 
 Ver `.env.example`. Ninguna se versiona: `.gitignore` cubre `.env`, `.env.*`
