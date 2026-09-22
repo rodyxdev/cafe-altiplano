@@ -254,3 +254,8 @@ a mano desde la pestaña Actions con *Run workflow*.
 
 Este Supabase lo comparten también los Proyectos 6 y 7, así que este
 workflow los mantiene despiertos a todos.
+
+## Nota de desarrollo
+
+Este proyecto fue desarrollado con asistencia de Claude (Anthropic) como
+herramienta de apoyo en el proceso de desarrollo.
